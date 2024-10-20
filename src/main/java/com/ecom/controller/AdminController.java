@@ -111,30 +111,34 @@ public class AdminController {
 	public String saveCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file,
 			HttpSession session) throws IOException {
 
-		String imageName = file != null ? file.getOriginalFilename() : "default.jpg";
+		String imageName = file.getOriginalFilename() != "" ? file.getOriginalFilename() : "default.jpg";
 		category.setImageName(imageName);
 
 		Boolean existCategory = categoryService.existCategory(category.getName());
 
 		if (existCategory) {
 			session.setAttribute("errorMsg", "Category Name already exists");
+			return "/admin/category";
 		} else {
-
-			Category saveCategory = categoryService.saveCategory(category);
-
-			if (ObjectUtils.isEmpty(saveCategory)) {
-				session.setAttribute("errorMsg", "Not saved ! internal server error");
+			if(file.getOriginalFilename() == "") {
+				session.setAttribute("errorMsg", "Please upload an image");
 			} else {
+				Category saveCategory = categoryService.saveCategory(category);
 
-				File saveFile = new ClassPathResource("static/img").getFile();
+				if (ObjectUtils.isEmpty(saveCategory)) {
+					session.setAttribute("errorMsg", "Not saved ! internal server error");
+				} else {
 
-				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category_img" + File.separator
-						+ file.getOriginalFilename());
+					File saveFile = new ClassPathResource("static/img").getFile();
 
-				// System.out.println(path);
-				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+					Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category_img" + File.separator
+							+ file.getOriginalFilename());
 
-				session.setAttribute("succMsg", "Saved successfully");
+					// System.out.println(path);
+					Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+					session.setAttribute("succMsg", "Saved successfully");
+				}
 			}
 		}
 
@@ -193,7 +197,7 @@ public class AdminController {
 			session.setAttribute("errorMsg", "something wrong on server");
 		}
 
-		return "redirect:/admin/loadEditCategory/" + category.getId();
+		return "redirect:/admin/edit_category/" + category.getId();
 	}
 
 	@PostMapping("/saveProduct")
@@ -205,22 +209,27 @@ public class AdminController {
 		product.setImage(imageName);
 		product.setDiscount(0);
 		product.setDiscountPrice(product.getPrice());
-		Product saveProduct = productService.saveProduct(product);
-
-		if (!ObjectUtils.isEmpty(saveProduct)) {
-
-			File saveFile = new ClassPathResource("static/img").getFile();
-
-			Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "product_img" + File.separator
-					+ image.getOriginalFilename());
-
-			// System.out.println(path);
-			Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-
-			session.setAttribute("succMsg", "Product Saved Success");
+		if(image.isEmpty()) {
+			session.setAttribute("errorMsg", "Please upload an image.");
 		} else {
-			session.setAttribute("errorMsg", "something wrong on server");
+			Product saveProduct = productService.saveProduct(product);
+
+			if (!ObjectUtils.isEmpty(saveProduct)) {
+
+				File saveFile = new ClassPathResource("static/img").getFile();
+
+				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "product_img" + File.separator
+						+ image.getOriginalFilename());
+
+				// System.out.println(path);
+				Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+				session.setAttribute("succMsg", "Product Saved Success");
+			} else {
+				session.setAttribute("errorMsg", "something wrong on server");
+			}
 		}
+		
 
 		return "redirect:/admin/loadAddProduct";
 	}
