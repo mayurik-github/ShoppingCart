@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ecom.dto.ProductDTO;
 import com.ecom.model.Product;
 
 public interface ProductService {
 
-	public Product saveProduct(Product product);
+	public ProductDTO saveProduct(ProductDTO product);
 
 	public List<Product> getAllProducts();
 

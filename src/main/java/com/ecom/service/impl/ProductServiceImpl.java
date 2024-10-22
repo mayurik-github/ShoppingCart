@@ -16,19 +16,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ecom.dto.ProductDTO;
 import com.ecom.model.Product;
 import com.ecom.repository.ProductRepository;
 import com.ecom.service.ProductService;
+import com.ecom.service.discovery.ProductFeignClient;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private ProductFeignClient productFeignClient;
 
 	@Override
-	public Product saveProduct(Product product) {
-		return productRepository.save(product);
+	public ProductDTO saveProduct(ProductDTO product) {
+		return productFeignClient.save(product);
 	}
 
 	@Override

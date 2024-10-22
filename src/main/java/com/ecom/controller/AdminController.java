@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ecom.dto.ProductDTO;
 import com.ecom.model.Category;
 import com.ecom.model.Product;
 import com.ecom.model.ProductOrder;
@@ -201,7 +202,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/saveProduct")
-	public String saveProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image,
+	public String saveProduct(@ModelAttribute ProductDTO product, @RequestParam("file") MultipartFile image,
 			HttpSession session) throws IOException {
 
 		String imageName = image.isEmpty() ? "default.jpg" : image.getOriginalFilename();
@@ -212,7 +213,7 @@ public class AdminController {
 		if(image.isEmpty()) {
 			session.setAttribute("errorMsg", "Please upload an image.");
 		} else {
-			Product saveProduct = productService.saveProduct(product);
+			ProductDTO saveProduct = productService.saveProduct(product);
 
 			if (!ObjectUtils.isEmpty(saveProduct)) {
 

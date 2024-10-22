@@ -4,6 +4,7 @@ com/ecom/util/OrderStatus.class
 com/ecom/util/CommonUtil.class
 com/ecom/service/CartService.class
 com/ecom/service/CommnServiceImpl.class
+com/ecom/dto/ProductDTO.class
 com/ecom/controller/UserController.class
 com/ecom/service/impl/ProductServiceImpl.class
 com/ecom/repository/UserRepository.class
@@ -27,6 +28,7 @@ com/ecom/service/impl/CategoryServiceImpl.class
 com/ecom/model/Product.class
 com/ecom/service/UserService.class
 com/ecom/ShoppingCartApplication.class
+com/ecom/service/discovery/ProductFeignClient.class
 com/ecom/service/CommonService.class
 com/ecom/service/impl/UserServiceImpl.class
 com/ecom/util/AppConstant.class

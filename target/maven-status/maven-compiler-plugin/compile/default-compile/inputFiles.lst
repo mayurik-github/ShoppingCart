@@ -1,3 +1,4 @@
+/Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/service/discovery/ProductFeignClient.java
 /Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/config/UserDetailsServiceImpl.java
 /Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/config/AuthSucessHandlerImpl.java
 /Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/service/impl/CategoryServiceImpl.java
@@ -5,6 +6,7 @@
 /Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/controller/AdminController.java
 /Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/repository/CartRepository.java
 /Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/util/OrderStatus.java
+/Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/dto/ProductDTO.java
 /Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/model/Cart.java
 /Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/service/impl/ProductServiceImpl.java
 /Users/mayurikulkarni/synergisticit-code/DevOps-Started-6-August-2024/ShoppingCart/src/main/java/com/ecom/config/CustomUser.java
